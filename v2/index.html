@@ -6,56 +6,40 @@
   <title>PuriClor – Agua cristalina y segura</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .hero-wrap {
+    .hero-perspective {
+      perspective: 1200px;
       min-height: 100vh;
-      position: relative;
       overflow: hidden;
     }
-    .hero-bg-layer {
+    .hero-3d-panel {
+      transform-style: preserve-3d;
+      min-height: 100vh;
+      width: 100%;
+      will-change: transform;
+      transform: perspective(1200px) rotateX(6deg) rotateY(-6deg) scale(1.05);
+      transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-perspective.hero-loaded .hero-3d-panel {
+      transform: perspective(1200px) rotateX(0deg) rotateY(0deg) scale(1);
+    }
+    .hero-layer {
       position: absolute;
       inset: 0;
+    }
+    .hero-bg {
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-    }
-    .hero-bg-filtered {
-      filter: grayscale(40%) brightness(0.85);
-      z-index: 0;
-    }
-    .hero-bg-vibrant {
-      z-index: 1;
-      clip-path: circle(0 at 50% 50%);
-      transition: clip-path 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .hero-wrap.reveal-active .hero-bg-vibrant {
-      clip-path: circle(150vmax at 50% 50%);
+      backface-visibility: hidden;
     }
     .hero-overlay {
-      position: absolute;
-      inset: 0;
       background-color: rgba(0, 0, 0, 0.4);
-      z-index: 2;
+      backface-visibility: hidden;
     }
-    .water-drop-wrap {
-      position: absolute;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%) translateY(-15%);
-      z-index: 3;
-      pointer-events: none;
-    }
-    .hero-wrap.drop-fall .water-drop-wrap {
-      transform: translateX(-50%) translateY(50vh);
-      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .water-drop-wrap svg {
-      width: 48px;
-      height: 56px;
-      filter: drop-shadow(0 4px 12px rgba(255, 255, 255, 0.35));
-    }
-    .hero-content-wrap {
+    .hero-content {
       position: relative;
       z-index: 10;
+      transform: translateZ(60px);
       display: flex;
       align-items: center;
       min-height: 100vh;
@@ -63,11 +47,11 @@
     }
     .hero-content-inner {
       opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s,
-                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s,
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s;
     }
-    .hero-wrap.hero-ready .hero-content-inner {
+    .hero-perspective.hero-loaded .hero-content-inner {
       opacity: 1;
       transform: translateY(0);
     }
@@ -93,34 +77,30 @@
   </header>
 
   <!-- Hero Section -->
-  <section id="inicio" class="hero-wrap">
-    <div class="hero-bg-layer hero-bg-filtered" style="background-image: url('../assets/hero-pool.png');"></div>
-    <div class="hero-bg-layer hero-bg-vibrant" style="background-image: url('../assets/hero-pool.png');"></div>
-    <div class="hero-overlay"></div>
-    <div class="water-drop-wrap" aria-hidden="true">
-      <svg viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="water-drop">
-        <path d="M12 2C8.5 2 5 5.5 5 10c0 5.5 7 12 7 12s7-6.5 7-12c0-4.5-3.5-8-7-8z" fill="rgba(255,255,255,0.95)" stroke="rgba(255,255,255,0.6)" stroke-width="0.5"/>
-      </svg>
-    </div>
-    <div class="hero-content-wrap">
-      <div class="hero-content-inner mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <div class="max-w-2xl">
-          <h1 class="text-5xl font-bold tracking-tight text-white drop-shadow-sm sm:text-6xl lg:text-7xl">
-            PuriClor
-          </h1>
-          <p class="mt-6 text-xl font-medium text-white drop-shadow-sm sm:text-2xl">
-            Agua cristalina y segura para disfrutar sin preocupaciones
-          </p>
-          <p class="mt-4 text-base text-white/95 drop-shadow-sm sm:text-lg">
-            Tratamiento profesional del agua con cloro de alta pureza.
-          </p>
-          <div class="mt-10">
-            <a
-              href="#cotizar"
-              class="inline-flex items-center rounded-full bg-blue-600 px-8 py-4 text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-            >
-              Cotizar ahora
-            </a>
+  <section id="inicio" class="hero-perspective">
+    <div class="hero-3d-panel" id="heroPanel">
+      <div class="hero-layer hero-bg" style="background-image: url('../assets/hero-pool.png');"></div>
+      <div class="hero-layer hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-content-inner mx-auto w-full max-w-7xl px-6 lg:px-8">
+          <div class="max-w-2xl">
+            <h1 class="text-5xl font-bold tracking-tight text-white drop-shadow-sm sm:text-6xl lg:text-7xl">
+              PuriClor
+            </h1>
+            <p class="mt-6 text-xl font-medium text-white drop-shadow-sm sm:text-2xl">
+              Agua cristalina y segura para disfrutar sin preocupaciones
+            </p>
+            <p class="mt-4 text-base text-white/95 drop-shadow-sm sm:text-lg">
+              Tratamiento profesional del agua con cloro de alta pureza.
+            </p>
+            <div class="mt-10">
+              <a
+                href="#cotizar"
+                class="inline-flex items-center rounded-full bg-blue-600 px-8 py-4 text-base font-medium text-white shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                Cotizar ahora
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -400,19 +380,51 @@
   <script>
     (function() {
       var hero = document.getElementById('inicio');
-      if (!hero) return;
-      function run() {
-        hero.classList.add('drop-fall');
+      var panel = document.getElementById('heroPanel');
+      if (!hero || !panel) return;
+
+      var loaded = false;
+      var parallaxEnabled = false;
+      var targetX = 0, targetY = 0;
+      var currentX = 0, currentY = 0;
+      var maxDeg = 3;
+      var lerp = 0.06;
+
+      function enableLoaded() {
+        if (loaded) return;
+        loaded = true;
+        hero.classList.add('hero-loaded');
         setTimeout(function() {
-          hero.classList.add('reveal-active');
-          hero.classList.add('hero-ready');
-        }, 800);
+          parallaxEnabled = true;
+          panel.style.transition = 'none';
+        }, 1400);
       }
+
       if (document.readyState === 'complete') {
-        requestAnimationFrame(run);
+        requestAnimationFrame(function() { requestAnimationFrame(enableLoaded); });
       } else {
-        window.addEventListener('load', function() { requestAnimationFrame(run); });
+        window.addEventListener('load', function() {
+          requestAnimationFrame(function() { requestAnimationFrame(enableLoaded); });
+        });
       }
+
+      document.addEventListener('mousemove', function(e) {
+        if (!parallaxEnabled) return;
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        targetY = (e.clientX / w - 0.5) * 2 * maxDeg;
+        targetX = (e.clientY / h - 0.5) * 2 * -maxDeg;
+      });
+
+      function tick() {
+        if (parallaxEnabled) {
+          currentX += (targetX - currentX) * lerp;
+          currentY += (targetY - currentY) * lerp;
+          panel.style.transform = 'perspective(1200px) rotateX(' + currentX + 'deg) rotateY(' + currentY + 'deg) scale(1)';
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
     })();
   </script>
 </body>
