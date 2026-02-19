@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PuriClor – Tratamiento profesional del agua</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .hero-bg {
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #9dc9dc;
+    }
+    .hero-wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 320px;
+      z-index: 5;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .hero-wave svg {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      min-width: 100%;
+    }
+    .hero-wave__layer1 {
+      animation: hero-wave-drift 8s linear infinite;
+    }
+    .hero-wave__layer2 {
+      opacity: 0.72;
+      animation: hero-wave-drift 10s linear infinite;
+    }
+    @keyframes hero-wave-drift {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .card-overlap {
+      margin-left: 0;
+    }
+    @media (min-width: 640px) {
+      .card-overlap { margin-left: -0.75rem; }
+      .card-overlap:first-child { margin-left: 0; }
+    }
+  </style>
+</head>
+<body class="antialiased bg-slate-50">
+  <!-- Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-teal-700 shadow-md">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#inicio" class="text-lg font-bold tracking-tight text-white">PuriClor</a>
+      <ul class="flex items-center gap-4 sm:gap-6 text-sm font-medium text-white/95">
+        <li><a href="#inicio" class="hover:text-white">Inicio</a></li>
+        <li><a href="#soluciones" class="hover:text-white">Soluciones</a></li>
+        <li><a href="#productos" class="hover:text-white">Productos</a></li>
+        <li><a href="#analisis" class="hover:text-white">Análisis</a></li>
+        <li><a href="#contacto" class="hover:text-white">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="relative min-h-screen flex flex-col">
+    <div class="absolute inset-0 hero-bg" style="background-image: url('../assets/pul.png');"></div>
+    <div class="absolute inset-0 bg-black/10"></div>
+
+    <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-20 pb-48 text-center">
+      <h1 class="text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+        Aprovecha al máximo tu piscina
+      </h1>
+      <p class="mt-4 max-w-2xl text-lg text-white/90 drop-shadow sm:text-xl">
+        Agua cristalina y segura con tratamiento profesional.
+      </p>
+    </div>
+
+    <!-- Floating Cards (overlap hero bottom) -->
+    <div class="relative z-20 mx-auto w-full max-w-5xl px-4 sm:px-6" style="margin-bottom: -3rem;">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-center">
+        <article class="card-overlap flex-1 rounded-2xl bg-teal-600 p-5 shadow-xl sm:p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Consejos</p>
+          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Automatiza el cuidado de tu piscina</h2>
+          <p class="mt-2 text-sm text-white/90">Sistemas y recomendaciones para un mantenimiento sencillo.</p>
+        </article>
+        <article class="card-overlap flex-1 rounded-2xl bg-teal-500 p-5 shadow-xl sm:p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Soluciones</p>
+          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Tratamiento cloro y pH</h2>
+          <p class="mt-2 text-sm text-white/90">Control automático del agua para mayor tranquilidad.</p>
+        </article>
+        <article class="card-overlap flex-1 rounded-2xl bg-cyan-600 p-5 shadow-xl sm:p-6">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Productos</p>
+          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Cloro de alta pureza</h2>
+          <p class="mt-2 text-sm text-white/90">Calidad profesional para un agua limpia y sin olores.</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- SVG wave: two layers, gradient, seamless loop -->
+    <div class="hero-wave" aria-hidden="true">
+      <svg class="hero-wave__layer1" viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="heroWaveGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+            <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.95" />
+          </linearGradient>
+        </defs>
+        <path fill="url(#heroWaveGrad1)" d="M0 48 C200 18 400 72 600 48 C800 24 1000 72 1200 48 L1200 80 L0 80 Z M1200 48 C1400 18 1600 72 1800 48 C2000 24 2200 72 2400 48 L2400 80 L1200 80 Z"/>
+      </svg>
+      <svg class="hero-wave__layer2" viewBox="0 0 1200 80" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="heroWaveGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.98" />
+            <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.95" />
+          </linearGradient>
+        </defs>
+        <path fill="url(#heroWaveGrad2)" d="M0 52 C180 28 420 68 600 52 C780 36 1020 68 1200 52 L1200 80 L0 80 Z M1200 52 C1380 28 1620 68 1800 52 C1980 36 2220 68 2400 52 L2400 80 L1200 80 Z"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Next section (wave overlaps into this) -->
+  <section class="relative -mt-6 bg-slate-100 pt-24 pb-24">
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-bold text-slate-800">Soluciones para tu piscina</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-slate-600">
+        Contenido de la siguiente sección. La onda superior se superpone ligeramente a esta zona.
+      </p>
+    </div>
+  </section>
+</body>
+</html>
