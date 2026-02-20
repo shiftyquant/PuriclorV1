@@ -6,6 +6,60 @@
   <title>PuriClor – Tratamiento profesional del agua</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    .header-nav {
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, transform 0.3s ease;
+    }
+    .header-nav.nav-hidden {
+      transform: translateY(-100%);
+    }
+    .header-nav.nav-scrolled {
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(8px);
+    }
+    .header-nav .nav-text {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.9), 0 0 24px rgba(59, 130, 246, 0.5);
+    }
+    .header-nav .nav-cta {
+      color: #fff;
+      text-shadow: 0 0 12px rgba(59, 130, 246, 0.9), 0 0 24px rgba(59, 130, 246, 0.5);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5), 0 0 16px rgba(59, 130, 246, 0.4);
+    }
+    .header-nav .nav-cta:hover {
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 0 20px rgba(59, 130, 246, 0.6);
+    }
+    .header-nav.nav-scrolled .nav-text {
+      color: #1f2937;
+      text-shadow: none;
+    }
+    .header-nav.nav-scrolled .nav-text:hover {
+      color: #111827;
+    }
+    .header-nav.nav-scrolled .nav-cta {
+      color: #1f2937;
+      text-shadow: none;
+      box-shadow: 0 0 0 1px rgba(209, 213, 219, 0.9);
+    }
+    .header-nav.nav-scrolled .nav-cta:hover {
+      box-shadow: 0 0 0 1px #1f2937;
+    }
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: currentColor;
+      transition: width 0.25s ease;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
     .hero-bg {
       background-size: cover;
       background-position: center center;
@@ -41,32 +95,65 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .card-overlap {
-      margin-left: 0;
-    }
-    @media (min-width: 640px) {
-      .card-overlap { margin-left: -0.75rem; }
-      .card-overlap:first-child { margin-left: 0; }
-    }
   </style>
 </head>
 <body class="antialiased bg-slate-50">
-  <!-- Navigation -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-teal-700 shadow-md">
+  <!-- Navigation (Tesla-style: transparent at top, solid + blur on scroll) -->
+  <header id="headerNav" class="header-nav fixed top-0 left-0 right-0 z-50 bg-transparent">
     <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-      <a href="#inicio" class="text-lg font-bold tracking-tight text-white">PuriClor</a>
-      <ul class="flex items-center gap-4 sm:gap-6 text-sm font-medium text-white/95">
-        <li><a href="#inicio" class="hover:text-white">Inicio</a></li>
-        <li><a href="#soluciones" class="hover:text-white">Soluciones</a></li>
-        <li><a href="#productos" class="hover:text-white">Productos</a></li>
-        <li><a href="#analisis" class="hover:text-white">Análisis</a></li>
-        <li><a href="#contacto" class="hover:text-white">Contacto</a></li>
+      <a href="#inicio" class="nav-text text-lg font-bold tracking-tight transition-colors duration-300">PuriClor</a>
+      <ul class="hidden items-center gap-8 sm:flex">
+        <li><a href="#inicio" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Inicio</a></li>
+        <li><a href="#soluciones" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Soluciones</a></li>
+        <li><a href="#productos" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Productos</a></li>
+        <li><a href="#analisis" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Análisis</a></li>
+        <li><a href="#contacto" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Contacto</a></li>
       </ul>
+      <a href="#contacto" class="nav-cta nav-text inline-flex items-center rounded px-4 py-2 text-sm font-medium transition-colors duration-300">Cotizar</a>
     </nav>
   </header>
+  <script>
+    (function() {
+      var SCROLL_THRESHOLD = 50;
+      var SCROLL_DELTA = 8;
+      var header = document.getElementById('headerNav');
+      var scrolled = false;
+      var hidden = false;
+      var lastScrollY = window.scrollY;
+      function onScroll() {
+        var y = window.scrollY;
+        var nowScrolled = y >= SCROLL_THRESHOLD;
+        if (nowScrolled !== scrolled) {
+          scrolled = nowScrolled;
+          header.classList.toggle('nav-scrolled', scrolled);
+        }
+        if (y <= SCROLL_THRESHOLD) {
+          if (hidden) {
+            hidden = false;
+            header.classList.remove('nav-hidden');
+          }
+        } else {
+          if (y > lastScrollY && y - lastScrollY > SCROLL_DELTA) {
+            if (!hidden) {
+              hidden = true;
+              header.classList.add('nav-hidden');
+            }
+          } else if (y < lastScrollY && lastScrollY - y > SCROLL_DELTA) {
+            if (hidden) {
+              hidden = false;
+              header.classList.remove('nav-hidden');
+            }
+          }
+        }
+        lastScrollY = y;
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
 
   <!-- Hero Section -->
-  <section id="inicio" class="relative min-h-screen flex flex-col">
+  <section id="inicio" class="relative min-h-screen flex flex-col pb-24">
     <div class="absolute inset-0 hero-bg" style="background-image: url('../assets/pul.png');"></div>
     <div class="absolute inset-0 bg-black/10"></div>
 
@@ -77,27 +164,6 @@
       <p class="mt-4 max-w-2xl text-lg text-white/90 drop-shadow sm:text-xl">
         Agua cristalina y segura con tratamiento profesional.
       </p>
-    </div>
-
-    <!-- Floating Cards (overlap hero bottom) -->
-    <div class="relative z-20 mx-auto w-full max-w-5xl px-4 sm:px-6" style="margin-bottom: -3rem;">
-      <div class="flex flex-col gap-4 sm:flex-row sm:items-stretch sm:justify-center">
-        <article class="card-overlap flex-1 rounded-2xl bg-teal-600 p-5 shadow-xl sm:p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Consejos</p>
-          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Automatiza el cuidado de tu piscina</h2>
-          <p class="mt-2 text-sm text-white/90">Sistemas y recomendaciones para un mantenimiento sencillo.</p>
-        </article>
-        <article class="card-overlap flex-1 rounded-2xl bg-teal-500 p-5 shadow-xl sm:p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Soluciones</p>
-          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Tratamiento cloro y pH</h2>
-          <p class="mt-2 text-sm text-white/90">Control automático del agua para mayor tranquilidad.</p>
-        </article>
-        <article class="card-overlap flex-1 rounded-2xl bg-cyan-600 p-5 shadow-xl sm:p-6">
-          <p class="text-xs font-semibold uppercase tracking-wider text-white/80">Productos</p>
-          <h2 class="mt-2 text-lg font-bold text-white sm:text-xl">Cloro de alta pureza</h2>
-          <p class="mt-2 text-sm text-white/90">Calidad profesional para un agua limpia y sin olores.</p>
-        </article>
-      </div>
     </div>
 
     <!-- SVG wave: two layers, gradient, seamless loop -->
@@ -123,14 +189,78 @@
     </div>
   </section>
 
-  <!-- Next section (wave overlaps into this) -->
-  <section class="relative -mt-6 bg-slate-100 pt-24 pb-24">
-    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <h2 class="text-center text-3xl font-bold text-slate-800">Soluciones para tu piscina</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-center text-slate-600">
-        Contenido de la siguiente sección. La onda superior se superpone ligeramente a esta zona.
-      </p>
+  <!-- Cards section: transparent wrapper over wave (only cards have bg) -->
+  <section class="relative z-20 -mt-16 pb-24 pt-12 md:-mt-24 md:pt-16 lg:-mt-56 lg:pt-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <article class="rounded-xl bg-gradient-to-br from-teal-600 to-cyan-500 p-8 text-white shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/90">CONSEJOS</p>
+          <h2 class="mt-3 text-xl font-bold sm:text-2xl">Automatiza el cuidado de tu piscina</h2>
+          <p class="mt-3 text-white/95">Sistemas y recomendaciones para un mantenimiento sencillo.</p>
+        </article>
+        <article class="rounded-xl bg-gradient-to-br from-teal-500 to-cyan-400 p-8 text-white shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/90">SOLUCIONES</p>
+          <h2 class="mt-3 text-xl font-bold sm:text-2xl">Tratamiento cloro y pH</h2>
+          <p class="mt-3 text-white/95">Control automático del agua para mayor tranquilidad.</p>
+        </article>
+        <article class="rounded-xl bg-gradient-to-br from-cyan-600 to-teal-500 p-8 text-white shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/90">PRODUCTOS</p>
+          <h2 class="mt-3 text-xl font-bold sm:text-2xl">Cloro de alta pureza</h2>
+          <p class="mt-3 text-white/95">Calidad profesional para un agua limpia y sin olores.</p>
+        </article>
+      </div>
+      <div class="mt-24 bg-gray-50 pt-16 pb-24 md:mt-28 md:pt-20 lg:mt-32 lg:pt-24">
+        <h2 class="text-center text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">Soluciones para tu piscina</h2>
+        <p class="mx-auto mt-4 max-w-2xl text-center text-slate-600">Todo lo que necesitas para un agua cristalina y segura, con el respaldo de expertos.</p>
+      </div>
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-b from-teal-900 to-slate-900 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-16">
+        <!-- Left: Contacto + social -->
+        <div class="text-center lg:text-left">
+          <h2 class="text-2xl font-bold tracking-tight">Contacto</h2>
+          <p class="mt-3 max-w-sm text-white/80">
+            Habla con un experto y recibe asesoría personalizada para el cuidado de tu piscina.
+          </p>
+          <div class="mt-6 flex justify-center gap-4 lg:justify-start">
+            <a href="#" class="rounded-full p-2 text-white/80 transition-colors hover:text-white" aria-label="Facebook">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="rounded-full p-2 text-white/80 transition-colors hover:text-white" aria-label="Instagram">
+              <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.14 2.21 1.22 2.21 1.22-.31 1.59-.205 3.003-.205 3.003 1.407 1.438 2.31 2.234 2.31 2.234 1.918 1.918 4.18 1.918 5.62 0 1.918-1.918 1.918-4.18 0-5.62l-2.31-2.234s.105-1.413.205-3.003c.31-1.59-.205-2.21-2.21-2.21-1.59-.31-3.003-.205-3.003-.205-1.438-1.407-2.234-2.31-2.234-2.31-1.918-1.918-4.18-1.918-5.62 0-1.918 1.918-1.918 4.18 0 5.62l2.31 2.234s-1.413.105-3.003.205c-1.59.31-2.21.205-2.21 2.21.31 1.59.205 3.003.205 3.003-1.407 1.438-2.31 2.234-2.31 2.234-1.918 1.918-1.918 4.18 0 5.62 1.918 1.918 4.18 1.918 5.62 0l2.234-2.31s.105-1.413-.205-3.003c-.31-1.59.205-2.21 2.21-2.21 1.59-.31 3.003-.205 3.003-.205 1.438 1.407 2.234 2.31 2.234 2.31 1.918 1.918 4.18 1.918 5.62 0 1.918-1.918 1.918-4.18 0-5.62l-2.234-2.31zM12 7.163c-2.67 0-4.837 2.165-4.837 4.837 0 2.67 2.165 4.837 4.837 4.837 2.67 0 4.837-2.165 4.837-4.837 0-2.67-2.165-4.837-4.837-4.837z"/></svg>
+            </a>
+          </div>
+        </div>
+        <!-- Center: Form -->
+        <div class="lg:col-span-1">
+          <form class="space-y-4">
+            <div>
+              <label for="footer-name" class="sr-only">Nombre completo</label>
+              <input type="text" id="footer-name" name="nombre" placeholder="Nombre completo" class="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-white/50 focus:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50" />
+            </div>
+            <button type="submit" class="w-full rounded-full bg-cyan-500 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:bg-cyan-400 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-teal-900">
+              Enviar consulta
+            </button>
+          </form>
+        </div>
+        <!-- Right: Teléfono + Email -->
+        <div class="text-center lg:text-left">
+          <p class="text-xs font-semibold uppercase tracking-wider text-white/60">Teléfono</p>
+          <p class="mt-1 text-white"><a href="tel:+573182424723" class="hover:text-cyan-300 transition-colors">+57 318 242 4723</a></p>
+          <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-white/60">Email</p>
+          <p class="mt-1 text-white"><a href="mailto:puriclor@puriclor.com" class="hover:text-cyan-300 transition-colors">puriclor@puriclor.com</a></p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <p class="text-center text-sm text-white/60">© 2025 PuriClor. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
