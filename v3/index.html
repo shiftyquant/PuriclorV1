@@ -95,6 +95,20 @@
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    #hero-3d {
+      position: relative;
+      width: 100%;
+      min-height: 380px;
+      height: 45vh;
+      z-index: 5;
+      pointer-events: none;
+    }
+    #hero-3d canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="antialiased bg-slate-50">
@@ -157,14 +171,18 @@
     <div class="absolute inset-0 hero-bg" style="background-image: url('../assets/pul.png');"></div>
     <div class="absolute inset-0 bg-black/10"></div>
 
-    <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-4 pt-20 pb-48 text-center">
-      <h1 class="text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+    <!-- Text: centered, full width, above 3D -->
+    <div class="relative z-10 flex w-full flex-col items-center justify-center px-4 pt-28 pb-8 text-center sm:pt-32 md:pt-36" style="pointer-events:auto">
+      <h1 class="max-w-5xl text-4xl font-bold tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
         Aprovecha al máximo tu piscina
       </h1>
-      <p class="mt-4 max-w-2xl text-lg text-white/90 drop-shadow sm:text-xl">
+      <p class="mx-auto mt-4 max-w-2xl text-lg text-white/90 drop-shadow sm:text-xl">
         Agua cristalina y segura con tratamiento profesional.
       </p>
     </div>
+
+    <!-- 3D container: below text, full width -->
+    <div id="hero-3d" class="flex-1"></div>
 
     <!-- SVG wave: two layers, gradient, seamless loop -->
     <div class="hero-wave" aria-hidden="true">
@@ -190,7 +208,7 @@
   </section>
 
   <!-- Cards section: transparent wrapper over wave (only cards have bg) -->
-  <section class="relative z-20 -mt-16 pb-24 pt-12 md:-mt-24 md:pt-16 lg:-mt-56 lg:pt-20">
+  <section class="relative z-20 -mt-16 pt-12 md:-mt-24 md:pt-16 lg:-mt-56 lg:pt-20">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
         <article class="rounded-xl bg-gradient-to-br from-teal-600 to-cyan-500 p-8 text-white shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
@@ -209,10 +227,102 @@
           <p class="mt-3 text-white/95">Calidad profesional para un agua limpia y sin olores.</p>
         </article>
       </div>
-      <div class="mt-24 bg-gray-50 pt-16 pb-24 md:mt-28 md:pt-20 lg:mt-32 lg:pt-24">
-        <h2 class="text-center text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">Soluciones para tu piscina</h2>
-        <p class="mx-auto mt-4 max-w-2xl text-center text-slate-600">Todo lo que necesitas para un agua cristalina y segura, con el respaldo de expertos.</p>
+      <!-- Left text + right horizontal image (reference layout) -->
+      <section class="relative mt-24 overflow-hidden bg-white pt-16 md:mt-28 md:pt-20 lg:mt-32 lg:pt-24">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div class="order-2 lg:order-1">
+            <h2 class="text-3xl font-bold leading-tight tracking-tight text-slate-800 sm:text-4xl lg:text-5xl">
+              Agua <span class="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">cristalina y pura</span> para quienes más te importan
+            </h2>
+            <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
+              Tratamiento profesional de piscinas con cloro de alta pureza y resultados visibles desde el primer uso.
+            </p>
+            <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-base font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50">
+              Sobre PuriClor
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="order-1 lg:order-2">
+            <div class="aspect-video w-full overflow-hidden rounded-lg bg-slate-200 shadow-md">
+              <img src="../assets/lucid_screen.jpg" alt="Pool" class="h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto mt-12 max-w-7xl border-t border-slate-200 pt-12 md:mt-16 md:pt-16"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Brands: thin line, left text, right list, gradient into blue (connects to swimmer section below) -->
+  <section class="relative overflow-hidden pt-0" style="background: linear-gradient(to bottom, #f8fafc 0%, #f0f9fc 35%, #e0f2f7 70%, #bae6fd 100%);">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl" style="color: #1e3a5f;">Brands</h2>
+          <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
+            Fluidra handles leading brands that are widely recognized in the sector and offers our customers a wide range of products in the pool and wellness market.
+          </p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-slate-50/80 px-5 py-2.5 text-base font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-100">
+            More about Brands
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
+    </div>
+    <div class="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full opacity-30" style="background: radial-gradient(circle, #bae6fd 0%, transparent 70%);"></div>
+  </section>
+
+  <!-- Full-width gradient section (reference): white-to-blue, left swimmer, center text -->
+  <section class="mb-20 relative isolate">
+    <div class="relative flex min-h-[28rem] flex-col overflow-visible py-40 md:min-h-[70rem] md:pb-40 lg:min-h-[50rem] lg:pb-48" style="background: linear-gradient(to bottom, #bae6fd 0%, #7dd3fc 25%, #38bdf8 50%, #0ea5e9 70%, #2c8ea6 100%);">
+      <div class="absolute left-[-1%] w-[40vw] max-w-[250px] pb-48">
+        <img
+          src="../assets/girl.png"
+          alt="Nadadora"
+          class="h-full w-full object-contain object-bottom"
+        />
+      </div>
+      <div class="relative isolate z-10 order-2 flex min-h-[5rem] flex-1 flex-col justify-center px-6 md:px-10 lg:min-h-0 lg:flex-row lg:items-center lg:px-12">
+        <div class="hidden shrink-0 lg:block lg:w-[32%]"></div>
+        <div class="max-w-lg">
+          <h2 class="text-2xl font-bold tracking-tight text-slate-800 md:text-3xl lg:text-4xl">
+            Lorem ipsum dolor sit amet
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-slate-600 md:text-lg">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+        <div class="hidden flex-1 lg:block"></div>
+      </div>
+      <div class="absolute bottom-0 left-0 w-full overflow-hidden">
+        <svg
+          viewBox="0 0 1440 320"
+          class="w-full h-[260px]"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="white"
+            d="
+              M0,160
+              C200,260 420,240 600,170
+              C780,100 900,180 1040,260
+              C1180,340 1320,320 1440,240
+              L1440,320
+              L0,320
+              Z
+            "
+          />
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products section -->
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-bold tracking-tight text-slate-800 sm:text-4xl">Productos</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-center text-slate-600">Todo lo que necesitas para un agua cristalina y segura, con el respaldo de expertos.</p>
     </div>
   </section>
 
@@ -262,5 +372,199 @@
       </div>
     </div>
   </footer>
+
+  <script type="module">
+    (async function() {
+      let THREE, GLTFLoader;
+      try {
+        const threeMod = await import('https://esm.sh/three@0.160.0');
+        THREE = threeMod.default || threeMod;
+        const loaderMod = await import('https://esm.sh/three@0.160.0/examples/jsm/loaders/GLTFLoader.js');
+        GLTFLoader = loaderMod.GLTFLoader;
+      } catch (e) {
+        console.error('[hero-3d] Failed to load Three.js:', e);
+        return;
+      }
+
+      const container = document.getElementById('hero-3d');
+    if (!container) {
+      console.error('[hero-3d] Container #hero-3d not found');
+      throw new Error('hero-3d container not found');
+    }
+    function getSize() {
+      const w = Math.max(container.clientWidth || 300, 300);
+      const h = Math.max(container.clientHeight || 300, 300);
+      return { w, h };
+    }
+
+    const scene = new THREE.Scene();
+    const { w: initW, h: initH } = getSize();
+
+    const camera = new THREE.PerspectiveCamera(45, initW / initH, 0.1, 1000);
+    camera.position.set(0, 0, 5);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+    renderer.setSize(initW, initH);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.domElement.style.display = 'block';
+    container.appendChild(renderer.domElement);
+
+    // Hero product lighting: key, rim, fill, env
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.35);
+    scene.add(ambientLight);
+    const hemisphere = new THREE.HemisphereLight(0xe8f4fc, 0x6b8a9e, 0.4);
+    scene.add(hemisphere);
+    const keyLight = new THREE.DirectionalLight(0xffffff, 0.9);
+    keyLight.position.set(2, 4, 5);
+    scene.add(keyLight);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    rimLight.position.set(-3, 2, -4);
+    scene.add(rimLight);
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.35);
+    fillLight.position.set(-1.5, 0, 2);
+    scene.add(fillLight);
+
+    let model = null;
+    let modelLoadTime = null;
+
+    const clock = new THREE.Clock();
+    const FLOAT_PERIOD_Y = 6;
+    const FLOAT_AMP_Y = 0.022;
+    const DRIFT_PERIOD_X = 11;
+    const DRIFT_AMP_X = 0.080;
+    const MICRO_Y_PERIOD = 12;
+    const MICRO_Y_AMP = 0.028;
+    const MICRO_Z_PERIOD = 10;
+    const MICRO_Z_AMP = 0.016;
+    const BASE_ROT_Y = (54 * Math.PI) / 180;
+    const BASE_ROT_Z = (-22 * Math.PI) / 180;
+    const BASE_ROT_X = (18 * Math.PI) / 180;
+
+    const RISE_DURATION = 2.4;
+    const RISE_START_Y = -0.28;
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const now = clock.getElapsedTime();
+      if (model) {
+        const t = now;
+        let baseY = 0;
+        if (modelLoadTime != null) {
+          const riseProgress = Math.min((t - modelLoadTime) / RISE_DURATION, 1);
+          const ease = riseProgress * riseProgress * (3 - 2 * riseProgress);
+          baseY = RISE_START_Y + (0 - RISE_START_Y) * ease;
+        }
+        const floatY = Math.sin((t * Math.PI * 2) / FLOAT_PERIOD_Y) * FLOAT_AMP_Y;
+        model.position.y = baseY + floatY;
+        model.position.x = Math.sin((t * Math.PI * 2) / DRIFT_PERIOD_X) * DRIFT_AMP_X;
+        model.rotation.x = BASE_ROT_X;
+        model.rotation.y = BASE_ROT_Y + Math.sin((t * Math.PI * 2) / MICRO_Y_PERIOD) * MICRO_Y_AMP;
+        model.rotation.z = BASE_ROT_Z + Math.sin((t * Math.PI * 2) / MICRO_Z_PERIOD) * -MICRO_Z_AMP;
+      }
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    const modelPath = new URL('../models/puriclor-bottle.glb', import.meta.url).href;
+
+    const loader = new GLTFLoader();
+    loader.load(
+      modelPath,
+      (gltf) => {
+        model = gltf.scene;
+
+        function applyMaterialFlags(m) {
+          m.side = THREE.DoubleSide;
+          m.depthWrite = true;
+          m.needsUpdate = true;
+        }
+
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.visible = true;
+            child.frustumCulled = false;
+            if (child.material) {
+              const m = child.material;
+              if (Array.isArray(m)) m.forEach(applyMaterialFlags);
+              else applyMaterialFlags(m);
+            }
+          }
+        });
+
+        if (model.scale.x === 0 && model.scale.y === 0 && model.scale.z === 0) {
+          model.scale.setScalar(1);
+        }
+
+        scene.add(model);
+        model.updateMatrixWorld(true);
+
+        const box = new THREE.Box3().setFromObject(model);
+        const center = new THREE.Vector3();
+        box.getCenter(center);
+        model.position.sub(center);
+        model.updateMatrixWorld(true);
+
+        let box2 = new THREE.Box3().setFromObject(model);
+        const sphere = new THREE.Sphere();
+        box2.getBoundingSphere(sphere);
+        let radius = sphere.radius;
+
+        const fovRad = (camera.fov * Math.PI) / 180;
+        const heroHeightFraction = 0.35;
+        const normalizedRadius = 1;
+        const scaleFactor = normalizedRadius / Math.max(radius, 0.01);
+        model.scale.multiplyScalar(scaleFactor);
+        model.updateMatrixWorld(true);
+
+        box2 = new THREE.Box3().setFromObject(model);
+        box2.getBoundingSphere(sphere);
+        radius = sphere.radius;
+
+        const safeRadius = Math.max(radius, 0.01);
+        const distance = safeRadius / (Math.tan(fovRad / 2) * heroHeightFraction);
+        const camDist = Math.max(distance, 0.5);
+        camera.position.set(0, 0, camDist);
+        camera.lookAt(0, 0, 0);
+        camera.near = Math.max(0.001, camDist - safeRadius - 1);
+        camera.far = Math.max(camera.near + 1, camDist + safeRadius + 100);
+        camera.updateProjectionMatrix();
+
+        const size2 = new THREE.Vector3();
+        box2.getSize(size2);
+        const shadowGeo = new THREE.PlaneGeometry(1, 1);
+        const shadowMat = new THREE.MeshBasicMaterial({
+          color: 0x0a0a0a,
+          transparent: true,
+          opacity: 0.14,
+          depthWrite: false,
+          side: THREE.DoubleSide
+        });
+        const shadowPlane = new THREE.Mesh(shadowGeo, shadowMat);
+        shadowPlane.rotation.x = -Math.PI / 2;
+        shadowPlane.rotation.z = 0.04;
+        shadowPlane.position.set(0, -size2.y / 2 - 0.008, 0);
+        shadowPlane.scale.set(2.6, 1, 1.5);
+        model.add(shadowPlane);
+
+        modelLoadTime = clock.getElapsedTime();
+      },
+      undefined,
+      (err) => {
+        console.error('[hero-3d] GLB load failed:', err);
+      }
+    );
+
+    function onResize() {
+      const { w, h } = getSize();
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+    window.addEventListener('resize', onResize);
+    const ro = new ResizeObserver(onResize);
+    ro.observe(container);
+    })();
+  </script>
 </body>
 </html>
