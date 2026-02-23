@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PuriClor – Tratamiento profesional del agua</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body class="antialiased bg-slate-50">
+  <!-- Navigation -->
+  <header id="headerNav" class="header-nav fixed top-0 left-0 right-0 z-50">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="#inicio" class="nav-text text-lg font-bold tracking-tight transition-colors duration-300">PuriClor</a>
+
+      <!-- Desktop: links + CTA -->
+      <ul class="hidden items-center gap-8 sm:flex">
+        <li><a href="problemas-piscina.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Soluciones</a></li>
+        <li><a href="productos.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Productos</a></li>
+        <li><a href="sectores.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Sectores</a></li>
+        <li><a href="servicios.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Servicios</a></li>
+        <li><a href="contacto.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav-cta nav-text hidden rounded px-4 py-2 text-sm font-medium transition-colors duration-300 sm:inline-flex">Cotizar</a>
+
+      <!-- Mobile: hamburger -->
+      <button type="button" id="navMenuBtn" class="nav-menu-btn inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 hover:text-slate-900 sm:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenuPanel">
+        <span class="nav-menu-btn__hamburger" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <!-- Mobile menu panel -->
+    <div id="navMenuPanel" class="nav-menu-panel sm:hidden" aria-hidden="true">
+      <ul class="nav-menu-panel__list">
+        <li><a href="problemas-piscina.html" class="nav-menu-panel__link nav-link">Soluciones</a></li>
+        <li><a href="productos.html" class="nav-menu-panel__link nav-link">Productos</a></li>
+        <li><a href="sectores.html" class="nav-menu-panel__link nav-link">Sectores</a></li>
+        <li><a href="servicios.html" class="nav-menu-panel__link nav-link">Servicios</a></li>
+        <li><a href="contacto.html" class="nav-menu-panel__link nav-link">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="relative min-h-screen flex flex-col pb-24">
+    <div class="absolute inset-0 hero-bg" style="background-image: url('../assets/pul.png');"></div>
+    <div class="absolute inset-0 bg-black/10"></div>
+
+    <!-- Text: centered, full width, above 3D -->
+    <div class="relative z-10 flex w-full flex-col items-center justify-center px-4 pt-28 pb-8 text-center sm:pt-32 md:pt-36" style="pointer-events:auto">
+      <h1 class="hero-title text-shadow-custom max-w-5xl text-4xl tracking-tight text-white drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+        Soluciones profesionales para el tratamiento de agua y piscinas
+      </h1>
+      <p class="text-shadow-custom-subtitle mx-auto mt-4 max-w-4xl text-lg text-white/90 drop-shadow sm:text-xl md:text-2xl lg:text-3xl">
+        Suministro y fabricación de químicos certificados para tratamiento de agua en sectores residenciales, comerciales e industriales.
+      </p>
+    </div>
+
+    <!-- 3D container: below text, full width -->
+    <div id="hero-3d" class="flex-1"></div>
+
+    <!-- Contact us FAB: bottom-right in hero, fixed left-center when scrolled -->
+    <a id="contactFab" href="#contacto" class="contact-fab" aria-label="Contact us">
+      <svg class="contact-fab__icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      <span class="contact-fab__text">Contactanos</span>
+    </a>
+
+    <!-- Minimal wave: static SVG, horizontal translate only (section separator) -->
+    <div class="hero-wave" aria-hidden="true">
+      <div class="hero-wave__track">
+        <svg class="hero-wave__svg" viewBox="0 0 200 24" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="heroWaveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="100%" stop-color="#f8fafc" />
+            </linearGradient>
+          </defs>
+          <!-- Single smooth curve, two identical periods for seamless loop -->
+          <path fill="url(#heroWaveGrad)" d="M0 12 Q25 6 50 12 Q75 18 100 12 L100 24 L0 24 Z M100 12 Q125 6 150 12 Q175 18 200 12 L200 24 L100 24 Z"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards section: minimal white cards with icons (Soluciones, Productos, Servicios) -->
+  <section class="relative z-20 -mt-16 pt-12 md:-mt-24 md:pt-16 lg:-mt-[24rem] lg:pt-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-3">
+        <article class="home-card">
+          <p class="home-card__category">SOLUCIONES</p>
+          <img src="./assets/icon-soluciones.png" alt="" class="home-card__icon" width="88" height="88" />
+          <h2 class="home-card__title">Tratamiento integral de agua</h2>
+          <p class="home-card__text">Diseñamos soluciones para piscinas, industria y sistemas de tratamiento con control técnico y resultados garantizados.</p>
+          <a href="#soluciones" class="home-card__cta">Ver soluciones →</a>
+        </article>
+        <article class="home-card">
+          <p class="home-card__category">PRODUCTOS</p>
+          <img src="./assets/icon-productos.png" alt="" class="home-card__icon" width="88" height="88" />
+          <h2 class="home-card__title">Químicos de alta pureza</h2>
+          <p class="home-card__text">Cloro 70%, Cloro 91%, antialgas, clarificadores y soluciones certificadas para uso profesional.</p>
+          <a href="#productos" class="home-card__cta">Ver productos →</a>
+        </article>
+        <article class="home-card">
+          <p class="home-card__category">SERVICIOS</p>
+          <img src="./assets/icon-servicios.png" alt="" class="home-card__icon" width="88" height="88" />
+          <h2 class="home-card__title">Asesoría e instalación técnica</h2>
+          <p class="home-card__text">Acompañamiento profesional, mantenimiento preventivo y soporte especializado para cada proyecto.</p>
+          <a href="#servicios" class="home-card__cta">Ver servicios →</a>
+        </article>
+      </div>
+      <!-- Left text + right horizontal image (reference layout) -->
+      <section class="relative mt-4 overflow-hidden pt-16 md:mt-6 md:pt-10 lg:pt-14">
+        <div class="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div class="order-2 lg:order-1">
+            <h2 class="text-3xl font-bold leading-tight tracking-tight text-slate-800 sm:text-4xl lg:text-5xl">
+              Agua <span class="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">cristalina y pura</span> para quienes más te importan
+            </h2>
+            <p class="mt-6 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
+              Tratamiento profesional de piscinas con cloro de alta pureza y resultados visibles desde el primer uso.
+            </p>
+            <a href="#" class="mt-6 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-base font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50">
+              Sobre PuriClor
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="order-1 lg:order-2">
+            <div class="aspect-video w-full overflow-hidden rounded-lg bg-slate-200 shadow-md">
+              <img src="../assets/lucid_screen.jpg" alt="Pool" class="h-full w-full object-cover" />
+            </div>
+          </div>
+        </div>
+        <div class="mx-auto mt-12 max-w-7xl border-t border-slate-200 pt-12 md:mt-16 md:pt-16"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- Brands: thin line, left text, right list, gradient into blue (connects to swimmer section below) -->
+  <section class="relative overflow-hidden pt-0" style="background: linear-gradient(to bottom, #f8fafc 0%, #f0f9fc 35%, #e0f2f7 70%, #bae6fd 100%);">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20 lg:items-center">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl" style="color: #1e3a5f;">Calidad certificada y respaldo técnico</h2>
+          <p class="mt-5 max-w-xl text-base leading-relaxed text-slate-600 md:text-lg">
+            En Puriclor trabajamos con procesos de importación y fabricación bajo estándares técnicos que garantizan pureza, estabilidad química y resultados confiables en el tratamiento de agua. Nuestro respaldo se basa en experiencia, control de calidad y acompañamiento profesional en cada proyecto.
+          </p>
+        </div>
+        <div class="brands-section__image-wrap">
+          <img
+            src="../assets/puriclor-stock.png"
+            alt="Productos PuriClor – cloro y químicos para tratamiento de agua"
+            class="brands-section__image"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full opacity-30" style="background: radial-gradient(circle, #bae6fd 0%, transparent 70%);">
+    </div>
+  </section>
+
+  <!-- Full-width gradient section: left swimmer, experiencia text + cards, wave at bottom -->
+  <section class="section-experiencia mb-20 relative isolate">
+    <div class="relative flex min-h-[28rem] flex-col overflow-visible py-24 md:min-h-[70rem] md:py-40 md:pb-40 lg:min-h-[50rem] lg:pb-48" style="background: linear-gradient(to bottom, #bae6fd 0%, #7dd3fc 25%, #38bdf8 50%, #0ea5e9 70%, #2c8ea6 100%);">
+          <!-- Swimmer: on small screens in-flow on left (occupies space); on lg absolute left -->
+    <div class="swimmer-section__image-wrapper">
+      <img
+        src="../assets/girl.png"
+        alt="Nadadora"
+        class="swimmer-section__image"
+      />
+    </div>
+      <!-- Two-column: left = text, right = sector cards (stack below on mobile) -->
+      <div class="experiencia-content relative isolate z-10 flex min-h-[5rem] flex-1 flex-col justify-center px-6 py-8 md:px-10 md:py-12 lg:min-h-0 lg:flex-row lg:items-center lg:justify-start lg:gap-12 lg:px-12 lg:py-0">
+        <div class="experiencia-content__left max-w-lg text-left lg:mt-5">
+          <h2 class="text-2xl font-bold tracking-tight text-white md:text-3xl lg:text-4xl">
+            Experiencia real en tratamiento de agua
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-white/95 md:text-lg">
+            Trabajamos junto a empresas, industrias y proyectos residenciales garantizando agua segura, procesos eficientes y soluciones químicas confiables. Nuestro enfoque combina producto, conocimiento técnico y acompañamiento permanente para lograr resultados medibles desde la primera aplicación.
+          </p>
+        </div>
+        <nav class="experiencia-content__right mt-10 lg:mt-5 lg:shrink-0" aria-label="Sectores">
+          <a href="/sectores/residencial" class="sector-card">
+            <div class="sector-card__text">
+              <span class="sector-card__label">SECTOR RESIDENCIAL</span>
+              <span class="sector-card__title">Soluciones para piscinas y hogares</span>
+            </div>
+            <span class="sector-card__arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="/sectores/comercial-industrial" class="sector-card">
+            <div class="sector-card__text">
+              <span class="sector-card__label">SECTOR COMERCIAL E INDUSTRIAL</span>
+              <span class="sector-card__title">Tratamiento de agua a escala profesional</span>
+            </div>
+            <span class="sector-card__arrow" aria-hidden="true">→</span>
+          </a>
+        </nav>
+      </div>
+      <!-- Wave below section: one curve on small (preserved proportion, min size, zoom when narrower), full on wide -->
+      <div class="experiencia-wave">
+        <svg class="experiencia-wave__svg experiencia-wave__svg--mobile" viewBox="0 0 720 320" preserveAspectRatio="xMidYMax meet">
+          <path fill="white" d="M0,160 C200,260 420,240 600,170 L720,123 L720,320 L0,320 Z"/>
+        </svg>
+        <svg class="experiencia-wave__svg experiencia-wave__svg--desktop" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path fill="white" d="M0,160 C200,260 420,240 600,170 C780,100 900,180 1040,260 C1180,340 1320,320 1440,240 L1440,320 L0,320 Z"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos section: Fix common Pool and Spa problems – carousel, exact replica (white bg, black text) -->
+  <section id="productos" class="products-section bg-white py-12 sm:py-16">
+    <div class="products-section__inner">
+      <h2 class="products-section__title">
+        <span class="products-section__title-line products-section__title-accent">Soluciona los</span>
+        <span class="products-section__title-line products-section__title-accent">Problemas más comunes</span>
+        <span class="products-section__title-line products-section__title-accent">de tu piscina</span>
+      </h2>
+      <p class="products-section__subtitle">Selecciona tu problema a continuación:</p>
+
+      <div class="products-carousel">
+        <button type="button" class="products-carousel__btn products-carousel__btn--prev" aria-label="Previous">
+          <svg class="products-carousel__arrow" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="products-carousel__viewport">
+          <div class="products-carousel__list" id="productsCarouselList">
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/cloudy_water-updated_550x.png" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">Agua Turbia</span>
+            </div>
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/green_water_550x.png" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">Agua Verde</span>
+            </div>
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/incorrect_chlorine_levels_550x.png" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">Bajo Nivel de Cloro</span>
+            </div>
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/algae-alert.jpg" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">Exceso de Algas Negras</span>
+            </div>
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/foamy_water_550x.webp" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">Agua con Mal Olor</span>
+            </div>
+            <div class="products-carousel__item">
+              <span class="products-carousel__circle-wrap"><img src="../assets/pHexcess.jpg" alt="" class="products-carousel__img" width="220" height="220" /></span>
+              <span class="products-carousel__label">pH Desbalanceado</span>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="products-carousel__btn products-carousel__btn--next" aria-label="Next">
+          <svg class="products-carousel__arrow" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+      <div class="products-section__cta">
+        <a href="#contacto" class="products-solve-btn">Resolver problemas ahora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <!-- Top: 6 columns of links -->
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Pool Care Products</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Pool Balancing Chemicals &amp; Testing</a></li>
+            <li><a href="#">Pool Chlorine &amp; Pool Sanitizers</a></li>
+            <li><a href="#">Pool Shock</a></li>
+            <li><a href="#">Pool Algaecides</a></li>
+            <li><a href="#">Specialty Pool Products</a></li>
+            <li><a href="#">Saltwater Pool Supplies</a></li>
+            <li><a href="#">All Pool Care Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Spa Care Products</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Spa Test and Balancers</a></li>
+            <li><a href="#">Spa Chlorine &amp; Hot Tub Sanitizers</a></li>
+            <li><a href="#">Spa Shock</a></li>
+            <li><a href="#">Spa Clarifiers</a></li>
+            <li><a href="#">All Spa Care Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Pools and Spa Tools</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">PuriClor Pool App</a></li>
+            <li><a href="#">Pool Water Testing</a></li>
+            <li><a href="#">Spa Water Testing</a></li>
+            <li><a href="#">Pool Volume Calculator</a></li>
+            <li><a href="#">Pool Water Test Chart</a></li>
+            <li><a href="#">Spa Test Strip Color Chart</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Blog/Learn</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">PuriClor™ Brilliance</a></li>
+            <li><a href="#">Pool and Spa Maintenance</a></li>
+            <li><a href="#">Resources for Pool and Spa Owners</a></li>
+            <li><a href="#">As Seen on TV</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">PuriClor</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Pool and Spa Store</a></li>
+            <li><a href="#">Mi PuriClor</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Learn More</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">About PuriClor™</a></li>
+            <li><a href="#">PuriClor™ Newsletter</a></li>
+            <li><a href="contacto.html">Contact Us</a></li>
+            <li><a href="#">Submit a Product Claim</a></li>
+            <li><a href="#">Mi PuriClor</a></li>
+            <li><a href="#">Find a Pool/Spa Store</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Middle: social icons only (Instagram, Facebook) -->
+      <div class="site-footer__social">
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          <svg class="site-footer__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.102 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428-.254.66-.598 1.216-1.153 1.772-.509.509-1.102.902-1.772 1.153-.637.247-1.363.415-2.428.465C15.056 21.99 14.717 22 12 22s-3.056-.01-4.122-.06c-1.065-.05-1.79-.218-2.428-.465-.66-.254-1.216-.598-1.772-1.153-.509-.509-.902-1.102-1.153-1.772-.247-.637-.415-1.363-.465-2.428C2.01 15.056 2 14.717 2 12s.01-3.056.06-4.122c.05-1.065.217-1.79.465-2.428.254-.66.598-1.216 1.153-1.772.509-.509 1.102-.902 1.772-1.153.637-.247 1.363-.415 2.428-.465C8.944 2.01 9.283 2 12 2zM12 5a7 7 0 100 14 7 7 0 000-14zm0 2a5 5 0 110 10 5 5 0 010-10zm4.5-4.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Facebook">
+          <svg class="site-footer__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <!-- Bottom: utility links + copyright -->
+      <div class="site-footer__bottom">
+        <div class="site-footer__legal-links">
+          <a href="#">Privacy Statement</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Site Map</a>
+          <a href="#">Site Help &amp; FAQ</a>
+        </div>
+        <p class="site-footer__copy">
+          PuriClor™ is a registered trademark of PuriClor S.A.S. or its affiliates. ©2026 PuriClor S.A.S. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+  <script type="module" src="hero-3d.js"></script>
+</body>
+</html>

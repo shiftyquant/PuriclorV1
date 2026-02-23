@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productos – PuriClor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body class="antialiased bg-white">
+  <!-- Navigation -->
+  <header id="headerNav" class="header-nav fixed top-0 left-0 right-0 z-50">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <a href="index.html" class="nav-text text-lg font-bold tracking-tight transition-colors duration-300">PuriClor</a>
+      <ul class="hidden items-center gap-8 sm:flex">
+        <li><a href="problemas-piscina.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Soluciones</a></li>
+        <li><a href="productos.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Productos</a></li>
+        <li><a href="sectores.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Sectores</a></li>
+        <li><a href="servicios.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Servicios</a></li>
+        <li><a href="contacto.html" class="nav-link nav-text text-sm font-medium transition-colors duration-300">Contacto</a></li>
+      </ul>
+      <a href="contacto.html" class="nav-cta nav-text hidden rounded px-4 py-2 text-sm font-medium transition-colors duration-300 sm:inline-flex">Cotizar</a>
+      <button type="button" id="navMenuBtn" class="nav-menu-btn inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 sm:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenuPanel">
+        <span class="nav-menu-btn__hamburger" aria-hidden="true"></span>
+      </button>
+    </nav>
+    <div id="navMenuPanel" class="nav-menu-panel sm:hidden" aria-hidden="true">
+      <ul class="nav-menu-panel__list">
+        <li><a href="problemas-piscina.html" class="nav-menu-panel__link nav-link">Soluciones</a></li>
+        <li><a href="productos.html" class="nav-menu-panel__link nav-link">Productos</a></li>
+        <li><a href="sectores.html" class="nav-menu-panel__link nav-link">Sectores</a></li>
+        <li><a href="servicios.html" class="nav-menu-panel__link nav-link">Servicios</a></li>
+        <li><a href="contacto.html" class="nav-menu-panel__link nav-link">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="pt-14">
+    <!-- 1. Header: blue background, white title, static wave -->
+    <section class="pg-products-header">
+      <h1 class="pg-products-header__title">Productos</h1>
+      <div class="pg-products-header__wave" aria-hidden="true">
+        <svg class="pg-products-header__wave-svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+          <path fill="white" d="M0 60 C360 0 720 120 1080 60 C1260 30 1380 90 1440 60 L1440 120 L0 120 Z"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 2. Filters: Filter (X) Reset + 3 columns with dividers -->
+    <section class="pg-products-filters">
+      <div class="pg-products-filters__inner">
+        <div class="pg-products-filters__row">
+          <span class="pg-products-filters__label">Filter: <span class="pg-products-filters__count">(0)</span> <a href="#" class="pg-products-filters__reset">Reset</a></span>
+          <div class="pg-products-filters__cols">
+            <div class="pg-products-filters__col">
+              <h3 class="pg-products-filters__col-title">Water Type</h3>
+              <label class="pg-products-filters__checkbox"><input type="checkbox" name="water" value="cloro" /> Cloro</label>
+              <label class="pg-products-filters__checkbox"><input type="checkbox" name="water" value="salt" /> Agua Salada</label>
+            </div>
+            <div class="pg-products-filters__col">
+              <h3 class="pg-products-filters__col-title">Product Type</h3>
+              <label class="pg-products-filters__checkbox"><input type="checkbox" name="type" value="test-balance" /> Test and Balance</label>
+            </div>
+            <div class="pg-products-filters__col">
+              <h3 class="pg-products-filters__col-title">Available At</h3>
+              <label class="pg-products-filters__checkbox"><input type="checkbox" name="at" value="retail" /> Retail Only</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Product grid: populated by JS from productos-data.json -->
+    <section class="pg-products-grid">
+      <div class="pg-products-grid__inner" id="productos-grid-inner" aria-busy="true" aria-live="polite">
+        <!-- Cards injected by product-grid.js -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer (reuse same structure as index) -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Footer navigation">
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Pool Care Products</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Pool Balancing Chemicals &amp; Testing</a></li>
+            <li><a href="#">Pool Chlorine &amp; Pool Sanitizers</a></li>
+            <li><a href="#">Pool Shock</a></li>
+            <li><a href="#">Pool Algaecides</a></li>
+            <li><a href="#">Specialty Pool Products</a></li>
+            <li><a href="#">Saltwater Pool Supplies</a></li>
+            <li><a href="#">All Pool Care Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Spa Care Products</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Spa Test and Balancers</a></li>
+            <li><a href="#">Spa Chlorine &amp; Hot Tub Sanitizers</a></li>
+            <li><a href="#">Spa Shock</a></li>
+            <li><a href="#">Spa Clarifiers</a></li>
+            <li><a href="#">All Spa Care Products</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Pools and Spa Tools</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">PuriClor Pool App</a></li>
+            <li><a href="#">Pool Water Testing</a></li>
+            <li><a href="#">Spa Water Testing</a></li>
+            <li><a href="#">Pool Volume Calculator</a></li>
+            <li><a href="#">Pool Water Test Chart</a></li>
+            <li><a href="#">Spa Test Strip Color Chart</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Blog/Learn</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">PuriClor™ Brilliance</a></li>
+            <li><a href="#">Pool and Spa Maintenance</a></li>
+            <li><a href="#">Resources for Pool and Spa Owners</a></li>
+            <li><a href="#">As Seen on TV</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">PuriClor</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">Pool and Spa Store</a></li>
+            <li><a href="#">Mi PuriClor</a></li>
+          </ul>
+        </div>
+        <div class="site-footer__col">
+          <h3 class="site-footer__col-title">Learn More</h3>
+          <ul class="site-footer__links">
+            <li><a href="#">About PuriClor™</a></li>
+            <li><a href="#">PuriClor™ Newsletter</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Submit a Product Claim</a></li>
+            <li><a href="#">Mi PuriClor</a></li>
+            <li><a href="#">Find a Pool/Spa Store</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class="site-footer__social">
+        <a href="#" class="site-footer__social-link" aria-label="Instagram">
+          <svg class="site-footer__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.102 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428-.254.66-.598 1.216-1.153 1.772-.509.509-1.102.902-1.772 1.153-.637.247-1.363.415-2.428.465C15.056 21.99 14.717 22 12 22s-3.056-.01-4.122-.06c-1.065-.05-1.79-.218-2.428-.465-.66-.254-1.216-.598-1.772-1.153-.509-.509-.902-1.102-1.153-1.772-.247-.637-.415-1.363-.465-2.428C2.01 15.056 2 14.717 2 12s.01-3.056.06-4.122c.05-1.065.217-1.79.465-2.428.254-.66.598-1.216 1.153-1.772.509-.509 1.102-.902 1.772-1.153.637-.247 1.363-.415 2.428-.465C8.944 2.01 9.283 2 12 2zM12 5a7 7 0 100 14 7 7 0 000-14zm0 2a5 5 0 110 10 5 5 0 010-10zm4.5-4.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>
+        </a>
+        <a href="#" class="site-footer__social-link" aria-label="Facebook">
+          <svg class="site-footer__social-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+      <div class="site-footer__bottom">
+        <div class="site-footer__legal-links">
+          <a href="#">Privacy Statement</a>
+          <a href="#">Accessibility</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Site Map</a>
+          <a href="#">Site Help &amp; FAQ</a>
+        </div>
+        <p class="site-footer__copy">
+          PuriClor™ is a registered trademark of PuriClor S.A.S. or its affiliates. ©2026 PuriClor S.A.S. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="index.js"></script>
+  <script src="product-grid.js"></script>
+</body>
+</html>
